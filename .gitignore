@@ -1,0 +1,51 @@
+# 🔥 Geral
+*.log
+*.db
+.DS_Store
+Thumbs.db
+
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.env
+*.venv
+.env
+.venv/
+venv/
+
+# Virtual Environment
+levo-plus-backend/venv/
+levo-plus-backend/.venv/
+venv/
+
+# pip
+pip-log.txt
+
+# IDEs e arquivos locais
+.vscode/
+.idea/
+*.swp
+
+# 📦 Node.js (Frontend)
+node_modules/
+levo-plus-frontend/node_modules/
+levo-plus-frontend/dist/
+levo-plus-frontend/.env
+
+# Build output (caso usar Vite ou outro bundler)
+levo-plus-frontend/build/
+levo-plus-frontend/.vite/
+
+# Static cache (caso use futuramente)
+levo-plus-frontend/.next/
+levo-plus-frontend/.cache/
+
+# Sistema
+*.bak
+*.tmp
+
+# Arquivos temporários do Git
+*.orig
