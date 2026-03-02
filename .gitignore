@@ -1,0 +1,61 @@
+# Environment & secrets — NEVER commit
+.env
+.env.local
+.env.production
+
+# Session data — stays on your server
+SYNAPSE_SESSION_*/
+archives/
+.synapse_fallback.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Logs
+*.log
+logs/
+bridge.log
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# File lock
+*.lock
+
+# Temporary files
+*.tmp
+*.temp
+
+# Internal working documents — not for public repo
+01_AUDIT_COMPLET_SYNAPSE.md
+02_PLAN_DOCUMENTATION_TECHNIQUE.md
+22_RAPPORT_REVISION.md
+03_README.pages
+SYNAPSE_README.pdf
+LETTRE_ESOLEAU_SYNAPSE.pdf
+CODE_LETTRE_SOLEAU.md
+
+# Numbered source drafts at root level (superseded by docs/ structure)
+/0[3-9]_*.md
+/1[0-9]_*.md
+/2[0-9]_*.md
