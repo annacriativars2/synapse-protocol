@@ -93,6 +93,12 @@ SYNAPSE_SESSION_<YYYYMMDD>_<counter>_<project>/
 | [API Reference](docs/api/endpoints.md) | REST API endpoints |
 | [Security Model](docs/design/security.md) | Threats and safeguards |
 
+### Protocol Family
+
+SYNAPSE is designed as the foundation of a broader protocol family for structured AI communication. The core DNA — standardized message envelope, idempotency, lifecycle management, safety limits, and full traceability — adapts to different topologies: peer-to-peer, hierarchical, or contract-based.
+
+This repository covers the peer-to-peer protocol. Other topologies are in active development.
+
 ### License
 
 Apache 2.0 — see [LICENSE](LICENSE) for details.
