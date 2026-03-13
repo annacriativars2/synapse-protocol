@@ -15,7 +15,7 @@ Thank you for your interest in SYNAPSE. This document describes the process for 
 1. Fork the repository
 2. Clone your fork
 3. Create a feature branch: `git checkout -b feature/my-feature`
-4. Install dependencies: `pip install -r requirements.txt -r requirements-dev.txt`
+4. Install dependencies: `pip install -e ".[api,yaml]" && pip install pytest`
 5. Run tests: `pytest tests/`
 
 ## Development Setup
@@ -30,8 +30,8 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
+pip install -e ".[api,yaml]"
+pip install pytest
 
 # Redis (required for integration tests)
 sudo systemctl start redis-server
@@ -106,9 +106,11 @@ pytest tests/ -v
 | `messages.py` | ~121 | Message schemas, state machine — changes require careful review |
 | `supervisor_listener.py` | ~82 | Telegram command bridge — supervisor interface |
 | `journal.py` | ~65 | Audit trail — append-only invariant must be preserved |
-| `config.py` | ~57 | Configuration — centralized constants |
-| `bridge.py` (Claude side) | ~425 | CLI integration — depends on Claude Code CLI behavior |
-| `routes/synapse.py` | ~410 | API endpoints — FastAPI router |
+| `config.py` | ~252 | Configuration — centralized constants |
+| `bridge.py` | ~250 | Generic Agent B bridge — Redis ↔ AgentExecutor |
+| `routes.py` | ~410 | API endpoints — FastAPI router |
+| `executor.py` | ~230 | Reference AgentExecutor — Claude Code CLI subprocess |
+| `interfaces.py` | ~45 | Protocol classes — Notifier, LLMProvider, AgentExecutor |
 
 ## Testing
 

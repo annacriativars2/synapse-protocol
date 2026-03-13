@@ -26,7 +26,7 @@ Unlike orchestrator/agent models where one AI commands another, SYNAPSE implemen
 
 ```
                     Human Supervisor
-                    (Telegram + Email)
+                    (Pluggable: Telegram, Email, Custom)
                           |
               approve / reject / pause
                           |
@@ -57,9 +57,9 @@ Unlike orchestrator/agent models where one AI commands another, SYNAPSE implemen
 
 | Channel | Direction | Purpose |
 |---------|-----------|---------|
-| `synapse:nexa_to_claude` | Agent A -> Agent B | Work requests, iterations |
-| `synapse:claude_to_nexa` | Agent B -> Agent A | Responses, proposals |
-| `synapse:francis` | System -> Supervisor | Notifications, checkpoints |
+| `synapse:agent_a_to_agent_b` | Agent A -> Agent B | Work requests, iterations |
+| `synapse:agent_b_to_agent_a` | Agent B -> Agent A | Responses, proposals |
+| `synapse:supervisor` | System -> Supervisor | Notifications, checkpoints |
 | `synapse:control` | Supervisor -> System | Commands: approve, reject, pause |
 
 ### Session Directory Structure
@@ -67,10 +67,10 @@ Unlike orchestrator/agent models where one AI commands another, SYNAPSE implemen
 ```
 SYNAPSE_SESSION_<YYYYMMDD>_<counter>_<project>/
 +-- session.json       # Metadata: status, counters, checkpoints
-+-- 00_OBJECTIF.md     # Immutable objective
++-- 00_OBJECTIVE.md    # Immutable objective
 +-- 01_PLAN.md         # Approved plan (documentary contract)
 +-- 02_JOURNAL.md      # Append-only collaboration log
-+-- 03_RESULTATS.md    # Final results
++-- 03_RESULTS.md      # Final results
 +-- docs/              # Conceptual documents
 +-- code/              # Source code produced
 +-- tests/             # Test results
@@ -80,7 +80,45 @@ SYNAPSE_SESSION_<YYYYMMDD>_<counter>_<project>/
 
 - Python 3.10+
 - Redis server
-- Claude Code CLI (for the bridge component)
+
+### Installation
+
+```bash
+pip install synapse-protocol
+
+# With FastAPI support (for Agent A side)
+pip install synapse-protocol[api]
+
+# With YAML config support
+pip install synapse-protocol[yaml]
+```
+
+### Quick Start
+
+```python
+from synapse.config import SynapseConfig
+from synapse.session import SynapseSession
+from synapse.messages import SynapseMessage, MessageType
+
+# Create a session manager
+sessions = SynapseSession()
+session = sessions.create(
+    project_name="my-project",
+    objective="Build a REST API with authentication",
+)
+
+# Build a message
+msg = SynapseMessage(
+    session_id=session.session_id,
+    sender=SynapseConfig.AGENT_A_ID,
+    type=MessageType.DIALOGUE,
+    content="Let's start by defining the API endpoints.",
+)
+
+print(msg.to_json())  # Ready for Redis publish
+```
+
+See the [Quick Start Guide](docs/guides/quickstart.md) for a complete walkthrough.
 
 ### Documentation
 

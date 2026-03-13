@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "synapse-protocol"
+version = "0.1.0"
+description = "Multi-agent collaboration protocol with human supervision via Redis pub/sub"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Francis Du", email = "francisdu53@gmail.com"},
+]
+keywords = [
+    "multi-agent", "collaboration", "protocol", "redis", "pub-sub",
+    "autonomous-agents", "human-in-the-loop", "supervision",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "redis>=4.0",
+    "filelock>=3.0",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.100", "uvicorn>=0.20"]
+yaml = ["pyyaml>=6.0"]
+all = ["fastapi>=0.100", "uvicorn>=0.20", "pyyaml>=6.0"]
+
+[project.urls]
+Homepage = "https://github.com/francisdu53/synapse-protocol"
+Repository = "https://github.com/francisdu53/synapse-protocol"
+Documentation = "https://github.com/francisdu53/synapse-protocol/tree/main/docs"
+
+[project.scripts]
+synapse-bridge = "synapse.bridge:main"
+
+[tool.setuptools.packages.find]
+include = ["synapse*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

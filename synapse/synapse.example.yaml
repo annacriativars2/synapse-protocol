@@ -1,0 +1,81 @@
+# =============================================================================
+# SYNAPSE Protocol Configuration
+# =============================================================================
+# Copy this file to synapse.yaml and customize as needed.
+# All values shown here are the defaults.
+#
+# Usage in Python:
+#   from synapse.config import SynapseConfig
+#   SynapseConfig.from_yaml("synapse.yaml")
+# =============================================================================
+
+# --- Redis connection ---
+redis:
+  host: localhost
+  port: 6379
+
+# --- Participants ---
+# Agent A = orchestrator / main agent
+# Agent B = worker / Claude CLI
+# Supervisor = human overseer
+participants:
+  agent_a:
+    id: agent_a
+    name: "Agent A"
+  agent_b:
+    id: agent_b
+    name: "Agent B"
+  supervisor:
+    id: supervisor
+    name: "Supervisor"
+
+# --- Redis pub/sub channels ---
+channels:
+  a_to_b: "synapse:agent_a_to_agent_b"
+  b_to_a: "synapse:agent_b_to_agent_a"
+  supervisor: "synapse:supervisor"
+  control: "synapse:control"
+
+# --- Session management ---
+sessions:
+  base_dir: ./synapse_sessions       # Where session directories are created
+  archives_dir: ./synapse_archives   # Where completed sessions are archived
+  max_concurrent: 3                  # Max parallel sessions allowed
+  prefix: SYNAPSE_SESSION            # Prefix for session directory names
+
+# --- Session file names ---
+# Standard files created inside each session directory
+session_files:
+  session_json: session.json
+  objective: "00_OBJECTIVE.md"
+  plan: "01_PLAN.md"
+  journal: "02_JOURNAL.md"
+  results: "03_RESULTS.md"
+
+# --- Timeouts (in seconds unless noted) ---
+timeouts:
+  agent_response: 60                 # Max wait for agent B to respond
+  agent_retry_max: 1                 # Number of retries on agent timeout
+  redis_reconnect_delay: 5           # Delay before reconnecting to Redis
+  bridge_process: 1800               # Max runtime for a bridge subprocess (30 min)
+  max_consecutive_timeouts: 3        # Stop + notify after N consecutive timeouts
+
+# --- Message constraints ---
+messages:
+  max_size: 524288                   # 512 KB max message size
+  idempotency_ttl: 86400            # 24h dedup window for message IDs
+
+# --- Notifications ---
+notifications:
+  checkpoint_interval_hours: 2       # Hours between automatic checkpoint notifications
+
+# --- Bridge / Agent B CLI ---
+bridge:
+  working_dir: "."                   # Working directory for bridge subprocess
+  agent_b_bin: claude                # Binary/command to invoke agent B
+  log_file: ./synapse_bridge.log     # Bridge log file path
+
+# --- Auxiliary files ---
+files:
+  journal_lock: ./.synapse_journal.lock   # Lock file for journal writes
+  fallback: ./.synapse_fallback.json      # Fallback message store
